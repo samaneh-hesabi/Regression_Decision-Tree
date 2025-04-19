@@ -29,6 +29,16 @@ rmse = np.sqrt(mse)
 mae = mean_absolute_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
+# Print metrics in a formatted way
+print("\n" + "="*50)
+print("MODEL PERFORMANCE METRICS")
+print("="*50)
+print(f"Mean Squared Error (MSE): {mse:.4f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.4f}")
+print(f"Mean Absolute Error (MAE): {mae:.4f}")
+print(f"R-squared Score (R2): {r2:.4f}")
+print("\nCross-Validation Results:")
+
 # 5-Fold Cross-Validation
 cv = KFold(n_splits=5, shuffle=True, random_state=42)
 cv_scores = cross_val_score(tree_model, X, y, cv=cv, scoring='neg_mean_squared_error')
