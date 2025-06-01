@@ -40,8 +40,12 @@ print(f"R-squared Score (R2): {r2:.4f}")
 print("\nCross-Validation Results:")
 
 # 5-Fold Cross-Validation
-cv = KFold(n_splits=5, shuffle=True, random_state=42)
-cv_scores = cross_val_score(tree_model, X, y, cv=cv, scoring='neg_mean_squared_error')
+#cv = KFold(n_splits=5, shuffle=True, random_state=42)
+#cv_scores = cross_val_score(tree_model, X, y, cv=cv, scoring='neg_mean_squared_error')
+#cv_rmse = np.sqrt(-cv_scores)
+
+# Cross-validation RMSE
+cv_scores = cross_val_score(tree_model , X, y, cv=5, scoring='neg_mean_squared_error')
 cv_rmse = np.sqrt(-cv_scores)
 
 # Residuals
@@ -75,7 +79,7 @@ plt.title("Actual vs Predicted")
 plt.show()
 
 # 4. Decision Tree Plot
-plt.figure(figsize=(20, 10))
+plt.figure(figsize=(8, 5))
 plot_tree(tree_model, feature_names=X.columns, filled=True, rounded=True)
 plt.title("Decision Tree Regression (Depth = 3)")
 plt.show()
